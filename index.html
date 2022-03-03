@@ -1,1 +1,245 @@
-<h1>Hello!</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <br>
+    <!-- Basic Page Needs
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>Geometric Latent Augmentation for Shape Spaces</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Metas
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- FONT
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+         <link rel="preconnect" href="https://fonts.googleapis.com"> 
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <!-- CSS
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/footable.standalone.min.css">
+
+    <!-- Favicon
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Google icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                               m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-86869673-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- Hover effect: https://codepen.io/nxworld/pen/ZYNOBZ -->
+    <style>
+      img {
+          display: block;
+      }
+
+      .column-50 {
+          float: left;
+          width: 50%;
+      }
+      .row-50:after {
+          content: "";
+          display: table;
+          clear: both;
+      }
+
+      .floating-teaser {
+          float: left;
+          width: 30%;
+          text-align: center;
+          padding: 15px;
+      }
+      .venue strong {
+          color: #99324b;
+      }
+
+      .benchmark {
+          width: 100%;
+          max-width: 960px;
+          overflow: scroll;
+          overflow-y: hidden;
+      }
+
+      .simple {
+          color:#52adc8 ;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Primary Page Layout
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <div class="container">
+      <h4 style="text-align:center">GLASS: Geometric Latent Augmentation for Shape Spaces</h4>
+      <p align="center", style="margin-bottom:12px;">
+        <a class="simple" href="https://sanjeevmk.github.io/">Sanjeev Muralikrishnan</a><sup>1</sup>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="simple" href="https://www.cse.iitb.ac.in/~sidch/">Siddhartha Chaudhuri</a><sup>2</sup>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="simple" href="https://noamaig.github.io">Noam Aigerman</a><sup>2</sup>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="simple" href="http://www.vovakim.com">Vladimir Kim</a><sup>2</sup>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="simple" href="https://techmatt.github.io">Matthew Fisher</a><sup>2</sup>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="simple" href="http://www0.cs.ucl.ac.uk/staff/n.mitra/">Niloy J. Mitra</a><sup>1</sup>,<sup>2</sup>
+      </p>
+
+      <p align="center" style="margin-bottom:20px;">
+        <sup>1</sup>University College London
+        <span style="display:inline-block; width: 32px"></span>
+        <sup>2</sup>Adobe Research <br>
+      </p>
+
+      <div class="venue">
+        <p align="center"> Computer Vision And Pattern Recognition (CVPR), 2022 </p>
+      </div>
+
+      <figure>
+        <img src="images/teaser.png" style="width:100%"></img>
+        <!-- <br> -->
+      </figure>
+      <div class="caption">
+        Starting from just 10 shapes (larger), our method iteratively augments the collection by alternating between training a VAE, and exploring random perturbations in its low-dimensional latent space guided by a purely geometric deformation energy. Here we show the 1000 most diverse shapes from the first 5K discovered by our method, positioned according to their latent embedding (projected to 2D via t-SNE). Shapes are colored according to the initial landmark they trace back to, with shapes added in later iterations lighter (greyer) in color. The augmentation effectively fills in the space between the sparse initial landmarks, and even extrapolates beyond them. It manages to also interpolate global rotations for samples near the back-facing exemplar, and yields shapes with larger feet-strides (far left), and crossed arms or feet (front, left and center) even though there are no such initial landmarks.
+      </div>
+
+      <br><br>
+
+      <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+        <h5>Abstract</h5>
+        <p align="justify">
+            We investigate the problem of training generative models on very sparse collections of 3D models. Particularly, instead of using difficult-to-obtain large sets of 3D models, we demonstrate that geometrically-motivated energy functions can be used to effectively augment and boost only a sparse collection of example (training) models. Technically, we analyze the Hessian of the as-rigid-as-possible (ARAP) energy to adaptively sample from and project to the underlying (local) shape space, and use the augmented dataset to train a variational autoencoder (VAE). We iterate the process, of building latent spaces of VAE and augmenting the associated dataset, to progressively reveal a richer and more expressive generative space for creating geometrically and semantically valid samples. We extensively evaluate our method against a set of strong baselines, provide ablation studies, and demonstrate application towards establishing shape correspondences. GLASS produces multiple interesting and meaningful shape variations even when starting from as few as 3-10 training shapes. 
+          <br>
+          <br>
+        </p>
+      </div>
+      <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+        <h5>Video</h5>
+      <center>
+          <video width="560" height="315" controls>
+            <source src="video/glass_dist.mp4" type="video/mp4">
+          </video>
+
+      <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/u_8DJ06SQdw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>-->
+      </center>
+      <br>
+      </div>
+    <!--
+
+    -->
+
+    <!--
+    <div class="section">
+        <h5>Materials</h5>
+        <div class="container" style="width:95%">
+-->
+          <!-- Icon row -->
+    <!--
+          <div class="row">
+            <div class="two columns">
+              <a href="https://arxiv.org/pdf/2004.01228.pdf"><img style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;" src="images/screenshot_main.png"></a>
+            </div>
+            <div class="two columns">
+              <a href="assets/slides.pdf"><img style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;" src="images/screenshot_slides.png"></a>
+            </div>
+          </div>
+        -->
+          <!-- Link row -->
+<!--
+          <div class="row">
+            <div class="two columns">
+              <a href="https://arxiv.org/pdf/2004.01228.pdf">Paper</a>
+            </div>
+            <div class="two columns">
+              <a href="assets/slides.pdf">Slides</a>
+            </div>
+          </div>
+
+          <div class="row">
+              <br>
+              <a href="https://github.com/mikacuy/deformation_aware_embedding">Code</a>
+          -->           <!-- <p>Code to be released soon!</p> -->
+          <!--
+          </div>
+
+        </div>
+      </div>
+
+  <br>
+
+  <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+    <h5>Qualitative Results</h5>
+    <center>
+      <img src="images/shapenet_quali_fixed-crop.png" style="width:90%"></img>
+        <div class="caption" >
+          <p align="justify">
+            Visualization of retrieval followed by deformation on ShapeNet. Our network is able to retrieve models
+            that better fit after deformation despite having large geometric distances initially. Notice the big back part of the retrieved chair and the thick seat of the retrieved sofa, attributes that are not identical to the query. Yet, these parts properly fit the target after deformation. Our network is also able to retrieve a sofa with legs and a car with a trunk that are present in the desired targets. Moreover, our deformation-aware retrieval & deformation approach also allows us to preserve fine-details of the source model post-deformation as shown in the zoomed in regions.
+          </p>
+        </div>
+        <br>
+
+      <img src="images/scan2cad_fixed_compressed.png" style="width:90%"></img>
+        <div class="caption" >
+          <p align="justify">
+            (Top row and bottom left) Qualitative results of Scan-to-CAD. (Bottom right) Quantitative Results: We compare different retrieval methods on the Scan2CAD dataset. The left chart shows the mean fitting errors and the right chart shows the number of best candidates retrieved by different methods. Ours-Reg achieves the minimum overall fitting errors and the maximum number of best retrievals among all categories compared with other methods. 
+          </p>
+        </div>
+        <br>
+
+      <img src="images/image2cad3_compressed.png" style="width:90%"></img>
+        <div class="caption" >
+          <p align="justify">
+            Qualitative results to show the feasibility of our approach for the Image-toCAD application. We show one of three input viewpoints used by Pixel2Mesh++ to produce their coarse mesh. We use this to retrieve a CAD model, which is then
+            deformed to fit the coarse mesh. Rigidity constraints ensure the quality of our output
+            as shown. 
+          </p>
+        </div>
+        <br>
+
+    </center>
+  </div>-->
+  
+		<!--
+	<div class="section">
+          <h5>Citation</h5> 
+  <pre style="margin:0"><code>@inproceedings{uy-deformawareretrieval-eccv20,
+      title = {Deformation-Aware 3D Model Embedding and Retrival},
+      author = {Mikaela Angelina Uy and Jingwei Huang and Minhyuk Sung and Tolga Birdal and Leonidas Guibas},
+      booktitle = {European Conference on Computer Vision (ECCV)},
+      year = {2020}
+  }</code></pre>    			
+		</div>
+		 -->
+        <!--
+        <br>  -->
+        
+  </div>
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/footable.min.js"></script>
+
+    <script type="text/javascript">
+      jQuery(function($){
+          $('.table').footable();
+      });
+    </script>
+
+    <!-- End Document
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  </body>
+</html>
