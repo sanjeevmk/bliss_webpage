@@ -138,42 +138,38 @@
       </center>
       <br>
       </div>
-    <!--
+    <div class="section">
+        <h5>Method Pipeline</h5>
+        <center>
+          <img src="images/overview_glass.png" style="width:100%"></img>
+            <div class="caption" >
+              <p align="justify">
+                We present GLASS to iteratively build a deformation-aware VAE latent space and analyzing it to generate new training samples to augment the original training set. This enables generation of diverse yet plausible shape variations starting from very few input examples. 
+              </p>
+            </div>
+            <br>
+        </center>
+    </div>
 
-    -->
-
-    <!--
     <div class="section">
         <h5>Materials</h5>
         <div class="container" style="width:95%">
--->
           <!-- Icon row -->
-    <!--
           <div class="row">
             <div class="two columns">
-              <a href="https://arxiv.org/pdf/2004.01228.pdf"><img style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;" src="images/screenshot_main.png"></a>
-            </div>
-            <div class="two columns">
-              <a href="assets/slides.pdf"><img style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;" src="images/screenshot_slides.png"></a>
+              <a href="https://arxiv.org/pdf/2108.03225.pdf"><img style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;" src="images/paper_shot.png"></a>
             </div>
           </div>
-        -->
           <!-- Link row -->
-<!--
           <div class="row">
             <div class="two columns">
-              <a href="https://arxiv.org/pdf/2004.01228.pdf">Paper</a>
-            </div>
-            <div class="two columns">
-              <a href="assets/slides.pdf">Slides</a>
+              <a href="https://arxiv.org/pdf/2108.03225.pdf">Paper</a>
             </div>
           </div>
 
           <div class="row">
               <br>
-              <a href="https://github.com/mikacuy/deformation_aware_embedding">Code</a>
-          -->           <!-- <p>Code to be released soon!</p> -->
-          <!--
+                     <p>Code to be released soon!</p>
           </div>
 
         </div>
@@ -184,49 +180,112 @@
   <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
     <h5>Qualitative Results</h5>
     <center>
-      <img src="images/shapenet_quali_fixed-crop.png" style="width:90%"></img>
+      <img src="images/generation.png" style="width:100%"></img>
         <div class="caption" >
           <p align="justify">
-            Visualization of retrieval followed by deformation on ShapeNet. Our network is able to retrieve models
-            that better fit after deformation despite having large geometric distances initially. Notice the big back part of the retrieved chair and the thick seat of the retrieved sofa, attributes that are not identical to the query. Yet, these parts properly fit the target after deformation. Our network is also able to retrieve a sofa with legs and a car with a trunk that are present in the desired targets. Moreover, our deformation-aware retrieval & deformation approach also allows us to preserve fine-details of the source model post-deformation as shown in the zoomed in regions.
+            Training GLASS on the human, centaur, and horse meshes using the 3 examples each (top). (Bottom) We show random samples from the latent space, which combine different properties learned from the example deformations.
           </p>
         </div>
         <br>
-
-      <img src="images/scan2cad_fixed_compressed.png" style="width:90%"></img>
-        <div class="caption" >
-          <p align="justify">
-            (Top row and bottom left) Qualitative results of Scan-to-CAD. (Bottom right) Quantitative Results: We compare different retrieval methods on the Scan2CAD dataset. The left chart shows the mean fitting errors and the right chart shows the number of best candidates retrieved by different methods. Ours-Reg achieves the minimum overall fitting errors and the maximum number of best retrievals among all categories compared with other methods. 
-          </p>
-        </div>
-        <br>
-
-      <img src="images/image2cad3_compressed.png" style="width:90%"></img>
-        <div class="caption" >
-          <p align="justify">
-            Qualitative results to show the feasibility of our approach for the Image-toCAD application. We show one of three input viewpoints used by Pixel2Mesh++ to produce their coarse mesh. We use this to retrieve a CAD model, which is then
-            deformed to fit the coarse mesh. Rigidity constraints ensure the quality of our output
-            as shown. 
-          </p>
-        </div>
-        <br>
-
     </center>
-  </div>-->
+    <center>
+      <img src="images/face_generation_3.png" style="width:100%"></img>
+        <div class="caption" >
+          <p align="justify">
+            Despite facial expressions not being perfectly locally rigid, we show above that GLASS generates plausible novel expressions on the COMA dataset from just 3 landmarks.
+          </p>
+        </div>
+        <br>
+    </center> 
+    <center>
+      <img src="images/face_generation.png" style="width:100%"></img>
+        <div class="caption" >
+          <p align="center">
+            GLASS's facial-expression generation results, when trained on 6 expressions from the COMA dataset.
+          </p>
+        </div>
+        <br>
+    </center> 
+    <center>
+      <img src="images/faust3_fat.png" style="width:100%"></img>
+        <div class="caption" >
+          <p align="justify">
+            In the above figure, we show that GLASS can work with any bodyshape, with generated samples (gold) from 3 FAUST poses (grey) of a large-frame identity.
+          </p>
+        </div>
+        <br>
+    </center> 
+    <center>
+      <img src="images/retrieval.png" style="width:100%"></img>
+        <div class="caption" >
+          <p align="justify">
+            Generation results evaluated by coverage. We train different methods on the same training data (col 1) and generate
+comparable numbers of shapes. Given two shapes from the holdout data (col 2), we evaluate the methods by finding the closest generated shape (cols 3-9). Note how the baselines exhibit strong artifacts and usually do not match the query shape
+          </p>
+        </div>
+        <br>
+    </center>
+    <center>
+
+      <img src="images/interpolation_comparison.png" style="width:100%"></img>
+        <div class="caption" >
+          <p align="justify">
+            Interpolation results. In gray, we show two landmark shapes. In gold, we show the decoded meshes after we linearly interpolate the latent space between these two landmarks. All models are trained on only 5 landmarks.
+          </p>
+        </div>
+        <br>
+    </center>
+    <center>
+
+      <img src="images/interpolation_comparison_raster.png" style="width:100%"></img>
+        <div class="caption" >
+          <p align="center">
+            We compare the interpolation results between our method, several ablations of our method, and prior work.
+          </p>
+        </div>
+        <br>
+    </center>
+    <center>
+
+      <img src="images/latent_expansion.png" style="width:100%"></img>
+        <div class="caption" >
+          <p align="justify">
+            tSNE embedding of generated samples shows progressive augmentation of the shape space. Sample color indicates originating (parent) shape.
+          </p>
+        </div>
+        <br>
+    </center>
+
+  </div>
   
-		<!--
 	<div class="section">
           <h5>Citation</h5> 
-  <pre style="margin:0"><code>@inproceedings{uy-deformawareretrieval-eccv20,
-      title = {Deformation-Aware 3D Model Embedding and Retrival},
-      author = {Mikaela Angelina Uy and Jingwei Huang and Minhyuk Sung and Tolga Birdal and Leonidas Guibas},
-      booktitle = {European Conference on Computer Vision (ECCV)},
-      year = {2020}
-  }</code></pre>    			
+  <pre style="margin:0"><code>
+  @article{DBLP:journals/corr/abs-2108-03225,
+  author    = {Sanjeev Muralikrishnan and
+               Siddhartha Chaudhuri and
+               Noam Aigerman and
+               Vladimir G. Kim and
+               Matthew Fisher and
+               Niloy J. Mitra},
+  title     = {{GLASS:} Geometric Latent Augmentation for Shape Spaces},
+  journal   = {CoRR},
+  volume    = {abs/2108.03225},
+  year      = {2021},
+  url       = {https://arxiv.org/abs/2108.03225},
+  eprinttype = {arXiv},
+  eprint    = {2108.03225},
+  timestamp = {Wed, 11 Aug 2021 15:24:08 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-2108-03225.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+  </code></pre>    			
 		</div>
-		 -->
-        <!--
-        <br>  -->
+
+    <!--
+
+    -->
+
         
   </div>
 
