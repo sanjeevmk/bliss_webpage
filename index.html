@@ -110,7 +110,7 @@
       </div>
 
       <figure>
-        <img src="images/teaser.png" style="width:100%"></img>
+        <img src="images/cover.gif" style="width:100%"></img>
         <!-- <br> -->
       </figure>
       <div class="caption">
@@ -141,7 +141,7 @@
     <div class="section">
         <h5>Method Pipeline</h5>
         <center>
-          <img src="images/overview_glass.png" style="width:100%"></img>
+          <img src="images/overview_glass.jpg" style="width:100%"></img>
             <div class="caption" >
               <p align="justify">
                 We present GLASS to iteratively build a deformation-aware VAE latent space and analyzing it to generate new training samples to augment the original training set. This enables generation of diverse yet plausible shape variations starting from very few input examples. 
@@ -157,7 +157,10 @@
           <!-- Icon row -->
           <div class="row">
             <div class="two columns">
-              <a href="https://arxiv.org/pdf/2108.03225.pdf"><img style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;" src="images/paper_shot.png"></a>
+              <a href="https://arxiv.org/pdf/2108.03225.pdf"><img style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;" src="images/paper_shot.jpg"></a>
+            </div>
+            <div class="two columns">
+              <a href="https://github.com/sanjeevmk/glass/"><img style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;" src="images/github.png"></a>
             </div>
           </div>
           <!-- Link row -->
@@ -165,11 +168,9 @@
             <div class="two columns">
               <a href="https://arxiv.org/pdf/2108.03225.pdf">Paper</a>
             </div>
-          </div>
-
-          <div class="row">
-              <br>
-                     <p>Code to be released soon!</p>
+            <div class="two columns">
+              <a href="https://github.com/sanjeevmk/glass/">Code</a>
+            </div>
           </div>
 
         </div>
@@ -180,7 +181,7 @@
   <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
     <h5>Qualitative Results</h5>
     <center>
-      <img src="images/generation.png" style="width:100%"></img>
+      <img src="images/generation.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="justify">
             Training GLASS on the human, centaur, and horse meshes using the 3 examples each (top). (Bottom) We show random samples from the latent space, which combine different properties learned from the example deformations.
@@ -189,7 +190,7 @@
         <br>
     </center>
     <center>
-      <img src="images/face_generation_3.png" style="width:100%"></img>
+      <img src="images/face_generation_3.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="justify">
             Despite facial expressions not being perfectly locally rigid, we show above that GLASS generates plausible novel expressions on the COMA dataset from just 3 landmarks.
@@ -198,7 +199,7 @@
         <br>
     </center> 
     <center>
-      <img src="images/face_generation.png" style="width:100%"></img>
+      <img src="images/face_generation.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="center">
             GLASS's facial-expression generation results, when trained on 6 expressions from the COMA dataset.
@@ -207,7 +208,7 @@
         <br>
     </center> 
     <center>
-      <img src="images/faust3_fat.png" style="width:100%"></img>
+      <img src="images/faust3_fat.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="justify">
             In the above figure, we show that GLASS can work with any bodyshape, with generated samples (gold) from 3 FAUST poses (grey) of a large-frame identity.
@@ -216,7 +217,7 @@
         <br>
     </center> 
     <center>
-      <img src="images/retrieval.png" style="width:100%"></img>
+      <img src="images/retrieval.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="justify">
             Generation results evaluated by coverage. We train different methods on the same training data (col 1) and generate
@@ -227,7 +228,7 @@ comparable numbers of shapes. Given two shapes from the holdout data (col 2), we
     </center>
     <center>
 
-      <img src="images/interpolation_comparison.png" style="width:100%"></img>
+      <img src="images/interpolation_comparison.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="justify">
             Interpolation results. In gray, we show two landmark shapes. In gold, we show the decoded meshes after we linearly interpolate the latent space between these two landmarks. All models are trained on only 5 landmarks.
@@ -237,7 +238,7 @@ comparable numbers of shapes. Given two shapes from the holdout data (col 2), we
     </center>
     <center>
 
-      <img src="images/interpolation_comparison_raster.png" style="width:100%"></img>
+      <img src="images/interpolation_comparison_raster.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="center">
             We compare the interpolation results between our method, several ablations of our method, and prior work.
@@ -247,7 +248,7 @@ comparable numbers of shapes. Given two shapes from the holdout data (col 2), we
     </center>
     <center>
 
-      <img src="images/latent_expansion.png" style="width:100%"></img>
+      <img src="images/latent_expansion.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="justify">
             tSNE embedding of generated samples shows progressive augmentation of the shape space. Sample color indicates originating (parent) shape.
