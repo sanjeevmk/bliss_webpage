@@ -5,7 +5,7 @@
     <!-- Basic Page Needs
          –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta charset="utf-8">
-    <title>Geometric Latent Augmentation for Shape Spaces</title>
+    <title>BLiSS: Bootstrapped Linear Shape Space</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -78,23 +78,26 @@
           color:#52adc8 ;
       }
     </style>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <script type="text/javascript"
+      src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
   </head>
   <body>
 
     <!-- Primary Page Layout
          –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <div class="container">
-      <h4 style="text-align:center">GLASS: Geometric Latent Augmentation for Shape Spaces</h4>
+      <h4 style="text-align:center">BLiSS: Bootstrapped Linear Shape Space</h4>
       <p align="center", style="margin-bottom:12px;">
         <a class="simple" href="https://sanjeevmk.github.io/">Sanjeev Muralikrishnan</a><sup>1</sup>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a class="simple" href="https://www.cse.iitb.ac.in/~sidch/">Siddhartha Chaudhuri</a><sup>2</sup>
+        <a class="simple" href="https://www.duygu-ceylan.com/">Duygu Ceylan</a><sup>2</sup>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a class="simple" href="https://noamaig.github.io">Noam Aigerman</a><sup>2</sup>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a class="simple" href="http://www.vovakim.com">Vladimir G. Kim</a><sup>2</sup>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a class="simple" href="https://techmatt.github.io">Matthew Fisher</a><sup>2</sup>
+        <a class="simple" href="https://is.mpg.de/~chuang2">Chun-Hao Paul Huang</a><sup>2</sup>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a class="simple" href="http://www0.cs.ucl.ac.uk/staff/n.mitra/">Niloy J. Mitra</a><sup>1</sup>,<sup>2</sup>
       </p>
@@ -106,15 +109,15 @@
       </p>
 
       <div class="venue">
-        <p align="center"> Computer Vision And Pattern Recognition (CVPR), 2022 </p>
+        <p align="center"> </p>
       </div>
 
       <figure>
-        <img src="images/cover.gif" style="width:100%"></img>
+        <img src="new_images/teaser_v2_2rows.png" style="width:100%"></img>
         <!-- <br> -->
       </figure>
       <div class="caption">
-        Starting from just 10 shapes (larger), our method iteratively augments the collection by alternating between training a VAE, and exploring random perturbations in its low-dimensional latent space guided by a purely geometric deformation energy. Here we show the 1000 most diverse shapes from the first 5K discovered by our method, positioned according to their latent embedding (projected to 2D via t-SNE). Shapes are colored according to the initial landmark they trace back to, with shapes added in later iterations lighter (greyer) in color. The augmentation effectively fills in the space between the sparse initial landmarks, and even extrapolates beyond them. It manages to also interpolate global rotations for samples near the back-facing exemplar, and yields shapes with larger feet-strides (far left), and crossed arms or feet (front, left and center) even though there are no such initial landmarks.
+        We present BLiSS, a method that progressively builds a human body shape space and brings unregistered scans into correspondence to a given template. Starting from as few as 200 manually registered scans (green samples), BLiSS creates an expressive shape space (pink samples), performing on-par with state-of-the-art models such as SMPL, STAR, and GHUM. (Right) Our space can be used to recover the body-shape parameters of raw scans by projecting them directly to ours
       </div>
 
       <br><br>
@@ -122,7 +125,22 @@
       <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
         <h5>Abstract</h5>
         <p align="justify">
-            We investigate the problem of training generative models on very sparse collections of 3D models. Particularly, instead of using difficult-to-obtain large sets of 3D models, we demonstrate that geometrically-motivated energy functions can be used to effectively augment and boost only a sparse collection of example (training) models. Technically, we analyze the Hessian of the as-rigid-as-possible (ARAP) energy to adaptively sample from and project to the underlying (local) shape space, and use the augmented dataset to train a variational autoencoder (VAE). We iterate the process, of building latent spaces of VAE and augmenting the associated dataset, to progressively reveal a richer and more expressive generative space for creating geometrically and semantically valid samples. We extensively evaluate our method against a set of strong baselines, provide ablation studies, and demonstrate application towards establishing shape correspondences. GLASS produces multiple interesting and meaningful shape variations even when starting from as few as 3-10 training shapes. 
+            Morphable models are a backbone for many human-centric workflows as they provide a simple yet expressive
+            shape space. Creating such morphable models, however, is
+            both tedious and expensive. The main challenge is to carefully establish dense correspondences among raw scans
+            that capture sufficient shape variation. This is often addressed using a mix of non-rigid registration and significant manual intervention. We observe that creating a shape
+            space and solving for dense correspondence are tightly coupled – while dense correspondence is needed to build shape
+            spaces, an expressive shape space can provide a reduced
+            dimensional space to regularize the search. We introduce
+            BLiSS, a method to solve both progressively. Starting from a
+            small set of manually registered scans to bootstrap the process, we simultaneously enrich the shape space and then
+            use that to automatically get new unregistered scans into
+            correspondence. The critical component of BLiSS is a non-linear deformation model that captures details missed by
+            the low-dimensional shape space, thus allowing progressive
+            enrichment of the space. We show that ours produces, in the
+            context of body variations, a shape space that is at par with
+            state-of-the-art shape spaces (e.g., SMPL, STAR, GHUM),
+            while requiring much fewer (e.g., 5%) manual registrations
           <br>
           <br>
         </p>
@@ -132,26 +150,21 @@
         <div class="container" style="width:100%">
           <!-- Icon row -->
           <div class="row">
-            <div class="three columns">
-              <a href="./resources/glass_compressed.pdf"><img style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;" src="images/paper_shot.jpg"></a>
+            <div class="two columns">
+              <a href="./resources/BLiSS.pdf"><img style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;" src="new_images/paper_shot.png"></a>
             </div>
-            <div class="three columns">
-              <a href="./resources/glass_fullRes.pdf"><img style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;" src="images/paper_shot.jpg"></a>
-            </div>
-            <div class="three columns">
-              <a href="https://github.com/sanjeevmk/glass/"><img style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;" src="images/github.png"></a>
+            <div class="two columns">
+              <a href=""><img style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;" src="images/github.png"></a>
             </div>
           </div>
           <!-- Link row -->
           <div class="row">
-            <div class="three columns">
-              <a href="./resources/glass_compressed.pdf">Paper - Compressed</a>
+            <div class="two columns">
+              <a href="./resources/BLiSS.pdf">Paper</a>
             </div>
-            <div class="three columns">
-              <a href="./resources/glass_fullRes.pdf">Paper - Full Res</a>
-            </div>
-            <div class="three columns">
-              <a href="https://github.com/sanjeevmk/glass/">Code</a>
+            <div class="two columns">
+              <!-- <a href="https://github.com/sanjeevmk/glass/">Code</a> -->
+              TBA
             </div>
           </div>
 
@@ -159,25 +172,19 @@
       </div>
 
   <br>
-      <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
-        <h5>Video</h5>
-      <center>
-          <video width="100%" controls>
-            <source src="video/glass_dist.mp4" type="video/mp4">
-          </video>
-
-      <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/u_8DJ06SQdw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>-->
-      </center>
-      <br>
-      </div>
 
     <div class="section">
         <h5>Method Pipeline</h5>
         <center>
-          <img src="images/overview_glass.jpg" style="width:100%"></img>
+          <img src="new_images/pipeline.png" style="width:100%"></img>
             <div class="caption" >
               <p align="justify">
-                We present GLASS to iteratively build a deformation-aware VAE latent space and analyzing it to generate new training samples to augment the original training set. This enables generation of diverse yet plausible shape variations starting from very few input examples. 
+                Given a sparse set of scans $S_R$, and their registrations $R$ to a common template, we learn a linear shape space
+$B_{PCA}$ using $R_{PCA}$ and train a non-linear NJF based deformation model using $R_{DEFORM}$. Given a scan $S_U$ from a set
+of unregistered scans $U$, we first project it to the PCA basis to obtain $X_o$ and utilize NJF-based deformation to recover its
+registration to the template $X′$ in the canonical pose. We compute the Chamfer Distance ($D_{CD}$) of the registrations to the
+target scans and add all the registrations where the distance is within one standard deviation of the minimum distance to
+RPCA and update our shape space. By repeating these steps, we jointly register raw scans and enhance our shape space.
               </p>
             </div>
             <br>
@@ -186,86 +193,75 @@
 
 
   <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
-    <h5>Qualitative Results</h5>
+    <h5>Results</h5>
     <center>
-      <img src="images/generation.jpg" style="width:100%"></img>
+      <img src="images/histogram_progression.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="justify">
-            Training GLASS on the human, centaur, and horse meshes using the 3 examples each (top). (Bottom) We show random samples from the latent space, which combine different properties learned from the example deformations.
+            We show the histogram of the v2v error of the scans in our test set at different iterations of our method. We also color code the per-vertex error for an example scan. As our method progresses, the error decreases, and we observe a slight left shift in the histogram as the shape space improves. Insets show residue error on one scan over iterations.
           </p>
         </div>
         <br>
     </center>
     <center>
-      <img src="images/face_generation_3.jpg" style="width:100%"></img>
+      <img src="images/registration_comparison_v2.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="justify">
-            Despite facial expressions not being perfectly locally rigid, we show above that GLASS generates plausible novel expressions on the COMA dataset from just 3 landmarks.
+            For a given raw scan, we register each body model by predicting pose and body shape parameters. (Top) Each result is color coded based on the v2p error in meters w.r.t.~the ground truth registration provided by the artist.
           </p>
         </div>
         <br>
     </center> 
     <center>
-      <img src="images/face_generation.jpg" style="width:100%"></img>
+      <img src="images/modes.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="center">
-            GLASS's facial-expression generation results, when trained on 6 expressions from the COMA dataset.
+            We show shapes along the top three principal directions in different rows, and observe variations in gender, height, and weight along the respective PCA  modes.
           </p>
         </div>
         <br>
     </center> 
     <center>
-      <img src="images/faust3_fat.jpg" style="width:100%"></img>
+      <img src="images/body_and_face.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="justify">
-            In the above figure, we show that GLASS can work with any bodyshape, with generated samples (gold) from 3 FAUST poses (grey) of a large-frame identity.
+            <i>Left:</i>Registration (pink) of noisy scans (blue) with our final shape space. Since our model does not capture finger-level details, after optimization, the joints corresponding to the greyed-out regions are reset to default poses. <i>Right:</i>We show sampled faces from our final face-shape space after growing it from 20 to 800 shapes. We observe a variety of face changes in the cheek and nose regions. (Bottom) We take the test scans from the COMA dataset (in blue) and register them in our final face-shape space, which is shown in pink.
           </p>
         </div>
         <br>
     </center> 
     <center>
-      <img src="images/retrieval.jpg" style="width:100%"></img>
+      <img src="images/smplify.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="justify">
-            Generation results evaluated by coverage. We train different methods on the same training data (col 1) and generate
-comparable numbers of shapes. Given two shapes from the holdout data (col 2), we evaluate the methods by finding the closest generated shape (cols 3-9). Note how the baselines exhibit strong artifacts and usually do not match the query shape
+            Here we use the trained SMPLify-X model to estimate the shape from a single image. For BLiSS, we plugin our shape space as a drop-in replacement for SMPL's space, while using SMPL's pose space.
           </p>
         </div>
         <br>
     </center>
     <center>
 
-      <img src="images/interpolation_comparison.jpg" style="width:100%"></img>
+      <img src="images/bliss_face_rounds.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="justify">
-            Interpolation results. In gray, we show two landmark shapes. In gold, we show the decoded meshes after we linearly interpolate the latent space between these two landmarks. All models are trained on only 5 landmarks.
+            <b>Iterative Shape Corrections:</b> Lightly colored faces in the middle are our registrations in earlier iterations of the space, and the pink-colored face on the right is our registration after five rounds of BLiSS. As the rounds progress, registrations in later rounds more accurately capture the scan (left, in Blue), as observed by the broadening of the nose and jawline.
           </p>
         </div>
         <br>
     </center>
     <center>
 
-      <img src="images/interpolation_comparison_raster.jpg" style="width:100%"></img>
+      <img src="images/mano_hands.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="center">
-            We compare the interpolation results between our method, several ablations of our method, and prior work.
+            <b>Registering Hand scans:</b> We use our final hand-shape space to register hand scans (blue); registrations in canonical pose (i.e., default) shown in pink.
           </p>
         </div>
         <br>
     </center>
-    <center>
-
-      <img src="images/latent_expansion.jpg" style="width:100%"></img>
-        <div class="caption" >
-          <p align="justify">
-            tSNE embedding of generated samples shows progressive augmentation of the shape space. Sample color indicates originating (parent) shape.
-          </p>
-        </div>
-        <br>
-    </center>
-
   </div>
-  
+
+  <!--
 	<div class="section">
           <h5>Citation</h5> 
   <pre style="margin:0"><code>
@@ -277,6 +273,7 @@ comparable numbers of shapes. Given two shapes from the holdout data (col 2), we
 }
   </code></pre>    			
 		</div>
+  -->
 
     <!--
 
