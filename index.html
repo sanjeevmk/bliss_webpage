@@ -150,19 +150,25 @@
         <div class="container" style="width:100%">
           <!-- Icon row -->
           <div class="row">
-            <div class="two columns">
+            <div class="three columns">
               <a href="./resources/BLiSS.pdf"><img style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;" src="new_images/paper_shot.png"></a>
             </div>
-            <div class="two columns">
+            <div class="three columns">
+              <a href="https://arxiv.org/abs/2309.01765"><img style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;" src="images/arxiv_logo.jpeg"></a>
+            </div>
+            <div class="three columns">
               <a href=""><img style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;" src="images/github.png"></a>
             </div>
           </div>
           <!-- Link row -->
           <div class="row">
-            <div class="two columns">
+            <div class="three columns">
               <a href="./resources/BLiSS.pdf">Paper</a>
             </div>
-            <div class="two columns">
+            <div class="three columns">
+              <a href="https://arxiv.org/abs/2309.01765">Arxiv</a>
+            </div>
+            <div class="three columns">
               <!-- <a href="https://github.com/sanjeevmk/glass/">Code</a> -->
               TBA
             </div>
@@ -195,37 +201,19 @@ RPCA and update our shape space. By repeating these steps, we jointly register r
   <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
     <h5>Results</h5>
     <center>
-      <img src="images/histogram_progression.jpg" style="width:100%"></img>
+      <img src="images/body_and_face.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="justify">
-            We show the histogram of the v2v error of the scans in our test set at different iterations of our method. We also color code the per-vertex error for an example scan. As our method progresses, the error decreases, and we observe a slight left shift in the histogram as the shape space improves. Insets show residue error on one scan over iterations.
+            <i>Left:</i>Registration (pink) of noisy scans (blue) with our final shape space. Since our model does not capture finger-level details, after optimization, the joints corresponding to the greyed-out regions are reset to default poses. <i>Right:</i>We show sampled faces from our final face-shape space after growing it from 20 to 800 shapes. We observe a variety of face changes in the cheek and nose regions. (Bottom) We take the test scans from the COMA dataset (in blue) and register them in our final face-shape space, which is shown in pink.
           </p>
         </div>
         <br>
-    </center>
+    </center> 
     <center>
       <img src="images/registration_comparison_v2.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="justify">
             For a given raw scan, we register each body model by predicting pose and body shape parameters. (Top) Each result is color coded based on the v2p error in meters w.r.t.~the ground truth registration provided by the artist.
-          </p>
-        </div>
-        <br>
-    </center> 
-    <center>
-      <img src="images/modes.jpg" style="width:100%"></img>
-        <div class="caption" >
-          <p align="center">
-            We show shapes along the top three principal directions in different rows, and observe variations in gender, height, and weight along the respective PCA  modes.
-          </p>
-        </div>
-        <br>
-    </center> 
-    <center>
-      <img src="images/body_and_face.jpg" style="width:100%"></img>
-        <div class="caption" >
-          <p align="justify">
-            <i>Left:</i>Registration (pink) of noisy scans (blue) with our final shape space. Since our model does not capture finger-level details, after optimization, the joints corresponding to the greyed-out regions are reset to default poses. <i>Right:</i>We show sampled faces from our final face-shape space after growing it from 20 to 800 shapes. We observe a variety of face changes in the cheek and nose regions. (Bottom) We take the test scans from the COMA dataset (in blue) and register them in our final face-shape space, which is shown in pink.
           </p>
         </div>
         <br>
@@ -240,7 +228,24 @@ RPCA and update our shape space. By repeating these steps, we jointly register r
         <br>
     </center>
     <center>
-
+      <img src="images/mano_hands.jpg" style="width:100%"></img>
+        <div class="caption" >
+          <p align="center">
+            <b>Registering Hand scans:</b> We use our final hand-shape space to register hand scans (blue); registrations in canonical pose (i.e., default) shown in pink.
+          </p>
+        </div>
+        <br>
+    </center>
+    <center>
+      <img src="images/modes.jpg" style="width:100%"></img>
+        <div class="caption" >
+          <p align="center">
+            We show shapes along the top three principal directions in different rows, and observe variations in gender, height, and weight along the respective PCA  modes.
+          </p>
+        </div>
+        <br>
+    </center> 
+    <center>
       <img src="images/bliss_face_rounds.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="justify">
@@ -250,30 +255,29 @@ RPCA and update our shape space. By repeating these steps, we jointly register r
         <br>
     </center>
     <center>
-
-      <img src="images/mano_hands.jpg" style="width:100%"></img>
+      <img src="images/histogram_progression.jpg" style="width:100%"></img>
         <div class="caption" >
-          <p align="center">
-            <b>Registering Hand scans:</b> We use our final hand-shape space to register hand scans (blue); registrations in canonical pose (i.e., default) shown in pink.
+          <p align="justify">
+            We show the histogram of the v2v error of the scans in our test set at different iterations of our method. We also color code the per-vertex error for an example scan. As our method progresses, the error decreases, and we observe a slight left shift in the histogram as the shape space improves. Insets show residue error on one scan over iterations.
           </p>
         </div>
         <br>
     </center>
   </div>
 
-  <!--
 	<div class="section">
           <h5>Citation</h5> 
   <pre style="margin:0"><code>
-@inproceedings{glass2022sanjeev,
-  title={GLASS: Geometric Latent Augmentation for Shape Spaces},
-  author={Muralikrishnan, Sanjeev and Chaudhuri, Siddhartha and Aigerman, Noam and Kim, Vladimir and Fisher, Matthew and Mitra, Niloy},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  year={2022}
+    @misc{muralikrishnan2023bliss,
+      title={BLiSS: Bootstrapped Linear Shape Space}, 
+      author={Sanjeev Muralikrishnan and Chun-Hao Paul Huang and Duygu Ceylan and Niloy J. Mitra},
+      year={2023},
+      eprint={2309.01765},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
 }
   </code></pre>    			
 		</div>
-  -->
 
     <!--
 
