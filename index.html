@@ -117,7 +117,7 @@
         <!-- <br> -->
       </figure>
       <div class="caption">
-        We present BLiSS, a method that progressively builds a human body shape space and brings unregistered scans into correspondence to a given template. Starting from as few as 200 manually registered scans (green samples), BLiSS creates an expressive shape space (pink samples), performing on-par with state-of-the-art models such as SMPL, STAR, and GHUM. (Right) Our space can be used to recover the body-shape parameters of raw scans by projecting them directly to ours
+        <b>BLiSS:</b> present BLiSS, a method that progressively builds a human body shape space and brings unregistered scans into correspondence to a given template. Starting from as few as 200 manually registered scans (green samples), BLiSS creates an expressive shape space (pink samples), performing on-par with state-of-the-art models such as SMPL, STAR, and GHUM. (Right) Our space can be used to recover the body-shape parameters of raw scans by projecting them directly to ours
       </div>
 
       <br><br>
@@ -185,7 +185,7 @@
           <img src="new_images/pipeline.png" style="width:100%"></img>
             <div class="caption" >
               <p align="justify">
-                Given a sparse set of scans $S_R$, and their registrations $R$ to a common template, we learn a linear shape space
+                <b>Method:</b> a sparse set of scans $S_R$, and their registrations $R$ to a common template, we learn a linear shape space
 $B_{PCA}$ using $R_{PCA}$ and train a non-linear NJF based deformation model using $R_{DEFORM}$. Given a scan $S_U$ from a set
 of unregistered scans $U$, we first project it to the PCA basis to obtain $X_o$ and utilize NJF-based deformation to recover its
 registration to the template $X′$ in the canonical pose. We compute the Chamfer Distance ($D_{CD}$) of the registrations to the
@@ -204,7 +204,7 @@ RPCA and update our shape space. By repeating these steps, we jointly register r
       <img src="images/body_and_face.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="justify">
-            <i>Left:</i>Registration (pink) of noisy scans (blue) with our final shape space. Since our model does not capture finger-level details, after optimization, the joints corresponding to the greyed-out regions are reset to default poses. <i>Right:</i>We show sampled faces from our final face-shape space after growing it from 20 to 800 shapes. We observe a variety of face changes in the cheek and nose regions. (Bottom) We take the test scans from the COMA dataset (in blue) and register them in our final face-shape space, which is shown in pink.
+            <b>Scan Registrations: </b> <i>Left: </i>Registration (pink) of noisy scans (blue) with our final shape space. Since our model does not capture finger-level details, after optimization, the joints corresponding to the greyed-out regions are reset to default poses. <i>Right: </i>We show sampled faces from our final face-shape space after growing it from 20 to 800 shapes. We observe a variety of face changes in the cheek and nose regions. (Bottom) We take the test scans from the COMA dataset (in blue) and register them in our final face-shape space, which is shown in pink.
           </p>
         </div>
         <br>
@@ -213,7 +213,7 @@ RPCA and update our shape space. By repeating these steps, we jointly register r
       <img src="images/registration_comparison_v2.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="justify">
-            For a given raw scan, we register each body model by predicting pose and body shape parameters. (Top) Each result is color coded based on the v2p error in meters w.r.t.~the ground truth registration provided by the artist.
+            <b>BLiSS vs Others: </b>For a given raw scan, we register each body model by predicting pose and body shape parameters. (Top) Each result is color coded based on the v2p error in meters w.r.t.~the ground truth registration provided by the artist.
           </p>
         </div>
         <br>
@@ -222,7 +222,7 @@ RPCA and update our shape space. By repeating these steps, we jointly register r
       <img src="images/smplify.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="justify">
-            Here we use the trained SMPLify-X model to estimate the shape from a single image. For BLiSS, we plugin our shape space as a drop-in replacement for SMPL's space, while using SMPL's pose space.
+            <b>Image driven registrations: </b>Here we use the trained SMPLify-X model to estimate the shape from a single image. For BLiSS, we plugin our shape space as a drop-in replacement for SMPL's space, while using SMPL's pose space.
           </p>
         </div>
         <br>
@@ -230,7 +230,7 @@ RPCA and update our shape space. By repeating these steps, we jointly register r
     <center>
       <img src="images/mano_hands.jpg" style="width:100%"></img>
         <div class="caption" >
-          <p align="center">
+          <p align="justify">
             <b>Registering Hand scans:</b> We use our final hand-shape space to register hand scans (blue); registrations in canonical pose (i.e., default) shown in pink.
           </p>
         </div>
@@ -239,8 +239,8 @@ RPCA and update our shape space. By repeating these steps, we jointly register r
     <center>
       <img src="images/modes.jpg" style="width:100%"></img>
         <div class="caption" >
-          <p align="center">
-            We show shapes along the top three principal directions in different rows, and observe variations in gender, height, and weight along the respective PCA  modes.
+          <p align="justify">
+            <b>PCA Modes: </b>We show shapes along the top three principal directions in different rows, and observe variations in gender, height, and weight along the respective PCA  modes.
           </p>
         </div>
         <br>
@@ -258,7 +258,7 @@ RPCA and update our shape space. By repeating these steps, we jointly register r
       <img src="images/histogram_progression.jpg" style="width:100%"></img>
         <div class="caption" >
           <p align="justify">
-            We show the histogram of the v2v error of the scans in our test set at different iterations of our method. We also color code the per-vertex error for an example scan. As our method progresses, the error decreases, and we observe a slight left shift in the histogram as the shape space improves. Insets show residue error on one scan over iterations.
+            <b>Iterative Error Reduciton: </b>We show the histogram of the v2v error of the scans in our test set at different iterations of our method. We also color code the per-vertex error for an example scan. As our method progresses, the error decreases, and we observe a slight left shift in the histogram as the shape space improves. Insets show residue error on one scan over iterations.
           </p>
         </div>
         <br>
